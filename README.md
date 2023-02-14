@@ -1,5 +1,5 @@
-# Gesture Recognition using DL
-An assignment to train a Deep Learning (DL) model to recognize 5 hand gestures correctly when a user does a hand gesture in front of a web camera.
+# Melanoma Detection using CNN
+An assignment to create, compile and train a Convolutional Neural Network (CNN) model to classify 9 types of skin cancer accurately.
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -9,47 +9,51 @@ An assignment to train a Deep Learning (DL) model to recognize 5 hand gestures c
 * [Acknowledgements](#acknowledgements)
 
 ### General Information
-Imagine you are working as a data scientist at a home electronics company which manufactures state of the art smart televisions. You want to develop a cool feature in the smart-TV that can recognise five different gestures performed by the user which will help users control the TV without using a remote.<br>
-<br>
-The gestures are continuously monitored by the webcam mounted on the TV. Each gesture corresponds to a specific command:<br>
-* **0** - Left swipe: 'Jump' backwards 10 seconds
-* **1** - Right swipe: 'Jump' forward 10 seconds
-* **2** - Stop: Pause the movie
-* **3** - Thumbs down: Decrease the volume
-* **4** - Thumbs up:  Increase the volume
+To build a CNN based model which can accurately detect melanoma. Melanoma is a type of cancer that can be deadly if not detected early. It accounts for 75% of skin cancer deaths.
 
 #### Data Set Brief Information
-The training data consists of a few hundred videos categorised into one of the five classes. Each video (typically 2-3 seconds long) is divided into a sequence of 30 frames(images). These videos have been recorded by various people performing one of the five gestures in front of a webcam - similar to what the smart TV will use.<br>
-<br>
-The data is in a zip file. The zip file contains a 'train' and a 'val' folder with **two CSV files** for the two folders. These folders are in turn divided into subfolders where each subfolder represents a video of a particular gesture. Each subfolder, i.e. a video, contains **30 frames (or images)**. Note that all images in a particular video subfolder have the same dimensions but **different videos may have different dimensions**. Specifically, videos have two types of dimensions - either **360x360** or **120x160** (depending on the webcam used to record the videos).<br>
-<br>
-Each row of the CSV file represents one video and contains three main pieces of information - the name of the subfolder containing the 30 images of the video, the name of the gesture and the numeric label (between 0-4) of the video.<br>
+A zipped file containing 2 folders - Train and Test are given.
+Train and Testfolders are present for training-validation and predicting the model respectively.
+Each folder contains sub-folders with names of 9 types of skin cancer - actinic keratosis, basal cell carcinoma, dermatofibroma, melanoma, nevus, pigmented benign keratosis, seborrheic keratosis, squamous cell carcinoma, vascular lesion.
+These sub-folders contains respective skin cancer images.
 
 #### Business Objective
-Use different architectures to build a DL model to classify 5 gestures correctly by training the model on the 'train' folder which performs well on the validation 'val' folder as well.
+Create, compile and train a CNN based model which can classify 9 types of skin cancer accurately.
 
 #### Business Solution
-The trained model should be fit enough to be used in small web camera and identify the 5 gestures in real-time.
+The trained model is provided as a solution, which can evaluate images and alert the dermatologists about the presence of melanoma, that can reduce a lot of manual effort needed in diagnosis.
 
 
 ### Project Contents
-* **Gesture Recognition Case Study.ipynb** - Jupyter Notebook for Gesture Recognition using DL (Language : Python)
-* **Gesture Recognition write-up.docx** - A docx File for briefly explanation the models designed and its conclusion
+* **Melanoma Detection.ipynb** - Jupyter Notebook for Melanoma Detection using CNN (Language : Python)
+* **Melanoma Detection.pdf** - A PDF File for briefly explanation the assignement steps and CNN model outcome.
 * **README.md** - Readme file
 
 
 ### Conclusion
-Any Image classification can be solved using DL.
+Any Image classification can be solved using CNN.
 * **Data Downloading-Unzipping** → Dataset was downloaded from shared drive and unzipped.
-* **Data Reading/Data Understanding** → Defined the path for train and validation images.
-* **Dataset Creation** → Created train & validation dataset from the train directory with user defined batch size. Also, resized images as required.
-* **Model Building & training** → Created different DL models for fine tuning the accuracy.
-* **Model Building & training with augmented data** → Created different DL models for fine tuning the accuracy.
+* **Data Reading/Data Understanding** → Defined the path for train and test images.
+* **Dataset Creation** → Created train & validation dataset from the train directory with a batch size of 32. Also, resized images to 180x180.
+* **Dataset Visualization** → Created a code to visualize one instance of all the nine classes present in the dataset.
+* **Model Building & training** → Created a CNN model to predict 9 types of skin cancer classes. Normalized pixel value to range [0,1]. Chose optimizer as Adam and Loss as Sparse Categorical Cross Entropy. Trained the model for 20 epochs. Observed the model performance - Overfitting of train dataset.
+    * Training Dataset => loss: 0.35 - accuracy: 86.05 %
+	* Validation Dataset => loss: 2.19 - accuracy: 52.13 %
+* **Data Augmentation** → Created a augmentation layer to enhance/preprocess images for classification.
+* **Model Building & training on the Augmented data** → Created a CNN model to predict 9 types of skin cancer classes. Preprocessed images using image augmentation layer. Normalized pixel value to range [0,1]. Added drop out layer to avoid overfitting. Chose optimizer as Adam and Loss as Sparse Categorical Cross Entropy. Trained the model for 20 epochs. Observed the model performance - Avoided overfitting but training dataset accuracy reduced and validation dataset accuracy is not improving.
+    * Training Dataset => loss: 1.44 - accuracy: 48.38 %
+	* Validation Dataset => loss: 1.43 - accuracy: 48.10 %
+* **Class Distribution** → Examined class distribution.
+    * seborrheic keratosis has the least number of samples only 77.
+    * pigmented benign keratosis (462 Samples), melanoma (438 Samples), basal cell carcinoma (376 Samples), and nevus (357 Samples) classes dominates the data in terms proportionate number of samples .
+* **Handling class imbalances** → Rectified class imbalances present in the training dataset with Augmentor library.
+* **Model Building & training on the rectified class imbalance data** → Created a CNN model to predict 9 types of skin cancer classes. Normalized pixel value to range [0,1]. Added drop out layer to avoid overfitting. Chose optimizer as Adam and Loss as Sparse Categorical Cross Entropy. Trained the model for 20 and 30 epochs. Observed the model performance - Model trained for 30 epochs performs better in terms of accuracy and loss of training and validation dataset respectively. Although overfitting was avoided, the test data accuracy and loss is very less when compared to trained model.
+    * Training Dataset => loss: **0.37** - accuracy: **85.35** %
+	* Validation Dataset => loss: **0.64** - accuracy: **80.70** %
+	* Test Dataset => loss: **4.6** - accuracy: **39.83** %
 
 #### Recommendation
-Model trained is chosen to classify 5 gestures.
-* Training Dataset => loss: 0.35 - accuracy: 86.05 %
-* Validation Dataset => loss: 2.19 - accuracy: 52.13 %
+Model trained on the rectified class imbalance data with 30 epochs is chosen to classify 9 types of skin cancer accurately.
 
 
 ### Software and Library Versions
@@ -71,7 +75,7 @@ Model trained is chosen to classify 5 gestures.
 
 
 ### Acknowledgements
-This DL based Gesture Recognition assignment was done as part of [Upgrad](https://www.upgrad.com/ ) - **Master of Science in Machine Learning & Artificial Intelligence** programme.
+This CNN based model classification assignment was done as part of [Upgrad](https://www.upgrad.com/ ) - **Master of Science in Machine Learning & Artificial Intelligence** programme.
 
 
 ### Contact
