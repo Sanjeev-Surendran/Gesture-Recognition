@@ -72,11 +72,11 @@ Model 11 was chosen to classify 5 gestures.
 
 * ![sklearn](https://img.shields.io/static/v1?label=sklearn&message=1.0.2&color=blue&labelColor=grey)
 
-* ![cv2](https://img.shields.io/static/v1?label=sklearn&message=4.7.0&color=blue&labelColor=grey)
+* ![cv2](https://img.shields.io/static/v1?label=cv2&message=4.7.0&color=blue&labelColor=grey)
 
-* ![skimage](https://img.shields.io/static/v1?label=sklearn&message=0.19.2&color=blue&labelColor=grey)
+* ![skimage](https://img.shields.io/static/v1?label=skimage&message=0.19.2&color=blue&labelColor=grey)
 
-* ![imageio](https://img.shields.io/static/v1?label=sklearn&message=2.19.3&color=blue&labelColor=grey)
+* ![imageio](https://img.shields.io/static/v1?label=imageio&message=2.19.3&color=blue&labelColor=grey)
 
 
 ### Acknowledgements
