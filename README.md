@@ -48,10 +48,20 @@ The trained model should be fit enough to be used in small web camera and identi
 Any Image classification can be solved using DL.
 * **Data Downloading-Unzipping** → Dataset was downloaded from shared drive and unzipped.
 * **Data Reading/Data Understanding** → Defined the path for train and validation images.
-* **Dataset Creation** → Created train & validation dataset from the train directory with user defined batch size. Also, resized, normalized and cropped images as required.
-* **Model Building & training** → Created different DL models for fine tuning the accuracy.
+* **Dataset Creation** → Created train & validation dataset using generator. Also, created img_idx, initialization of the batch, correctly looping over the data points in a batch and cropping, resizing and normalisation of the images.
+* **Model Building & training** → Created different DL models for fine tuning the accuracy. Got a good accuracy with the least possible parameters.
+* **Write-up** → Written a document on detailed steps with the reason/logic behind adding more layers, changing filter size, cropping, resizing and other experiments performed. Also, mentioned the metric values that is used to take a decision.
 
 #### Recommendation
+* Model 11 gave superb results in prediction! But it has 2,816,581 parameters and model size is 33 MB. Prediction accuracy is **100** %. Accurately predicts all Gestures completely.
+* Model 10 gives decent prediction result! It has 2,816,581 parameters and model size is 15 MB. Prediction accuracy is **84** %. Accurately predicts 'Thumbs up' Gesture completely.
+* Model 1 and model 5 gives average prediction and model 5 ran faster than model 1.
+* Both models 1 and 5 have very less trainable parameters when compared to model 10 and 11.
+* Both models 1 and 5 have less accuracy and close to 50 % in prediction.
+* Model 1 have 867,589 parameters and model size is 10 MB. Prediction accuracy is **58** %. Identification of `Right Swipe` have more accuracy than other gestures.
+* Model 5 have 589,061 parameters and model size is 6 MB. Prediction accuracy is **52** %. Identification of `Right Swipe` have more accuracy than other gestures. FAILED to predict 'Stop: Pause' Gesture completely.
+* Even though models 1 and 5 have less parameters, it won't be able to identify gestures correctly in real-time.
+
 Model 11 was chosen to classify 5 gestures.
 * Training Accuracy - **98.94** %
 * Training Loss - **0.03**
